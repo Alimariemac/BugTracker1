@@ -1,0 +1,27 @@
+﻿@using BugTrackerV4.Helpers
+@model List <BugTrackerV4.Models.UsersViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+<table class="table table-hover">
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>
+                    @user.User.DisplayName
+                </td>
+                <td>
+                   @foreach (var role in user.Roles)
+                   {
+                    <p>@role</p>
+                   }
+                </td>
+                <td><a href="@Url.Action("EditUser", new { Id = user.User.Id})">   Assign Roles</a></td>
+                <td><a href="@Url.Action("DetailsUserRoles", new { Id = user.User.Id})">  Details</a></td>
+            </tr>
+        }
+    </tbody>
+  </table>
+
+
