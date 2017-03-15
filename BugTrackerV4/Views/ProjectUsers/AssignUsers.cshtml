@@ -12,20 +12,17 @@
                     @*<h3 class="panel-title"> @Model.User.DisplayName</h3>*@
                 </div>
             </div>
-            <form action="EditUser" method="Post" class="form-horizontal">
-                @Html.HiddenFor(m => m.Id, new { })
-                <div class="form-group">
-                    <div class="col-lg-offset-2 col-lg-9">
-                       @* @Html.ListBox("UsersNotOnProject", null, htmlAttributes: new { @id = "mySelect" })*@
-                        @Html.ListBox("UnassignedUsers", null, htmlAttributes: new { @id = "mySelect" })
-                    </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("projectId", Model.Id)
+
+                @Html.ListBox("UnassignedUsers",null, htmlAttributes: new { @id = "mySelect" })
+                <div class="row">
+                    <br />
+                    <button type="submit" class="btn btn-primary">Assign</button>
                 </div>
-                <div class="form-group">
-                    <div class="col-lg-offset-2 col-lg-9">
-                        <button type="submit" class="btn-u btn-u-green">Assign Users</button>
-                    </div>
-                </div>
-            </form>
+            }
 
 
         </div>
