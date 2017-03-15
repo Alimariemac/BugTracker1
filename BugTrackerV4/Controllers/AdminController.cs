@@ -57,9 +57,9 @@ namespace BugTrackerV4.Controllers
             {
                 if (SelRoles.Contains(role.Name))
                     um.AddToRole(model.User.Id, role.Name);
-               /* else
-                    if (!(role.Name == "Admin" && model.User.UserName == "rmanglani@coderfoundry.com"))
-                    um.RemoveFromRole(model.User.Id, role.Name);*/
+               else
+                    if (!(role.Name == "Admin" && model.User.UserName == "AliciaMacCara@gmail.com"))
+                    um.RemoveFromRole(model.User.Id, role.Name);
             }
             /*return RedirectToAction("EditUser", new { Id = model.User.Id });
             return RedirectToAction("DetailsUserRoles", new { Id = model.User.Id });*/

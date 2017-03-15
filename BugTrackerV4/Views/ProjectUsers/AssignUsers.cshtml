@@ -1,0 +1,35 @@
+﻿@model BugTrackerV4.Models.CodeFirst.Project
+@{
+    ViewBag.Title = "AssignUsers";
+}
+
+<div class="container">
+    <h2> Assign Users </h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-green margin-bottom-40">
+                <div class="panel-heading">
+                    @*<h3 class="panel-title"> @Model.User.DisplayName</h3>*@
+                </div>
+            </div>
+            <form action="EditUser" method="Post" class="form-horizontal">
+                @Html.HiddenFor(m => m.Id, new { })
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-9">
+                       @* @Html.ListBox("UsersNotOnProject", null, htmlAttributes: new { @id = "mySelect" })*@
+                        @Html.ListBox("UnassignedUsers", null, htmlAttributes: new { @id = "mySelect" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-9">
+                        <button type="submit" class="btn-u btn-u-green">Assign Users</button>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+        <!--End Hover Rows-->
+    </div>
+</div>
+
