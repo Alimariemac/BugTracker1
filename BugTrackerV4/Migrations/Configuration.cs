@@ -83,7 +83,7 @@ namespace BugTrackerV4.Migrations
                     UserName = "admin@demo.com",
                     Email = "admin@demo.com",
                     FirstName = "Administrator",
-                    LastName = "Role",
+                    LastName = "User",
                     DisplayName = "ADMIN"
                 };
 
@@ -101,7 +101,7 @@ namespace BugTrackerV4.Migrations
                     UserName = "manager@demo.com",
                     Email = "manager@demo.com",
                     FirstName = "Manager",
-                    LastName = "Role",
+                    LastName = "User",
                     DisplayName = "MANGR"
                 };
 
@@ -119,7 +119,7 @@ namespace BugTrackerV4.Migrations
                     UserName = "developer@demo.com",
                     Email = "developer@demo.com",
                     FirstName = "Developer",
-                    LastName = "Role",
+                    LastName = "User",
                     DisplayName = "DEVPR"
                 };
 
@@ -137,7 +137,7 @@ namespace BugTrackerV4.Migrations
                     UserName = "submitter@demo.com",
                     Email = "submitter@demo.com",
                     FirstName = "Submitter",
-                    LastName = "Role",
+                    LastName = "User",
                     DisplayName = "SUBMT"
                 };
 

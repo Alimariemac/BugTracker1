@@ -3,13 +3,22 @@
 @{
     ViewBag.Title = "Index";
 }
-<table class="table table-hover">
+<hr>
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Roles</th>
+            <th>Assign/unassign</th>
+            <th>Details</th>
+        </tr>
+    </thead>
     <tbody>
         @foreach (var user in Model)
         {
             <tr>
                 <td>
-                    @user.User.DisplayName
+                    @user.User.FullName
                 </td>
                 <td>
                    @foreach (var role in user.Roles)
@@ -24,4 +33,10 @@
     </tbody>
   </table>
 
+@section scripts{
+
+<script>$(document).ready(function () {
+    $('#myTable').DataTable();
+});</script>
+    }
 

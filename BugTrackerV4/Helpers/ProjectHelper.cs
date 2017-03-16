@@ -13,11 +13,12 @@ namespace BugTrackerV4.Helpers
     public class ProjectHelper
     {
         ApplicationDbContext db = new ApplicationDbContext();
+        public UserRolesHelper urh = new UserRolesHelper();
 
         public bool IsUserOnProject(string userId, int projectId)
         {
             var project = db.Projects.Find(projectId);
-            var flag = project.Users.Any(u => u.Id == userId);
+            var flag = (project.Users.Any(u => u.Id == userId));
             return (flag);
         }
 
@@ -44,7 +45,7 @@ namespace BugTrackerV4.Helpers
 
         public void RemoveUserFromProject(string userId, int projectId)
         {
-            if (IsUserOnProject(userId, projectId))
+            if (IsUserOnProject(userId, projectId) /*&& urh.IsUserInRole(userId, "Developer")*/)
             {
                 Project proj = db.Projects.Find(projectId);
                 var delUser = db.Users.Find(userId);
@@ -57,12 +58,14 @@ namespace BugTrackerV4.Helpers
 
         public ICollection<ApplicationUser> UsersOnProject(int projectId)
         {
-            return db.Projects.Find(projectId).Users;
+
+            return db.Projects.Find(projectId).Users.ToList();
         }
 
         public ICollection<ApplicationUser> UsersNotOnProject(int projectId)
         {
-            return db.Users.Where(u => u.Projects.All(p => p.Id != projectId)).ToList();
+             return db.Users.Where(u => u.Projects.All(p => p.Id != projectId)).ToList();
+            
         }
     }
 

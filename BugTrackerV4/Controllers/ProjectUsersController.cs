@@ -16,12 +16,7 @@ namespace BugTrackerV4.Controllers
         public UserRolesHelper urh = new UserRolesHelper();
 
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-
+        [Authorize(Roles = "Admin, ProjectManager")]
         [HttpGet]
         public ActionResult AssignUsers(int projectId)
         {
@@ -45,7 +40,7 @@ namespace BugTrackerV4.Controllers
             return RedirectToAction("Index", "Projects");
         }
 
-
+        [Authorize(Roles = "Admin, ProjectManager")]
         [HttpGet]
         public ActionResult unassignUsers(int projectId)
         {
@@ -69,7 +64,7 @@ namespace BugTrackerV4.Controllers
             }
             return RedirectToAction("Index", "Projects");
         }
-
+        [Authorize(Roles = "Admin, ProjectManager")]
         [HttpGet]
         public ActionResult reassignUsers(int projectId)
         {
