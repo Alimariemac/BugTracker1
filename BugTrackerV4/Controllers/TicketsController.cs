@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity;
 
 namespace BugTrackerV4.Controllers
 {
+    [Authorize]
     public class TicketsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -20,8 +21,62 @@ namespace BugTrackerV4.Controllers
         // GET: Tickets
         public ActionResult Index()
         {
-            var tickets = db.Tickets.Include(t => t.AssignedUser).Include(t => t.CreatorUser).Include(t => t.Project).Include(t => t.TicketPriority).Include(t => t.TicketStatus).Include(t => t.TicketType);
-            return View(tickets.ToList());
+            var userId = User.Identity.GetUserId();
+            TicketIndexViewModel model = new TicketIndexViewModel();
+            UserRolesHelper urHelper = new UserRolesHelper();
+
+            if (User.IsInRole("Admin"))
+            {
+                var tickets = db.Tickets.Include(t => t.AssignedUser)
+                    .Include(t => t.CreatorUser)
+                    .Include(t => t.Project)
+                    .Include(t => t.TicketPriority)
+                    .Include(t => t.TicketStatus)
+                    .Include(t => t.TicketType);
+
+                model.AdminTickets = tickets.ToList();
+            }
+
+            if (User.IsInRole("ProjectManager"))
+            {
+                var tickets = db.Projects.Where(p => p.PMID == userId).SelectMany(p => p.Tickets)
+                    .Include(t => t.AssignedUser)
+                    .Include(t => t.CreatorUser)
+                    .Include(t => t.Project)
+                    .Include(t => t.TicketPriority)
+                    .Include(t => t.TicketStatus)
+                    .Include(t => t.TicketType);
+
+                    model.PMTickets = tickets.ToList();
+            }
+
+            if (User.IsInRole("Developer"))
+            {
+                var tickets = db.Tickets.Where(t => t.AssignedUserId == userId)
+                    .Include(t => t.AssignedUser)
+                    .Include(t => t.CreatorUser)
+                    .Include(t => t.Project)
+                    .Include(t => t.TicketPriority)
+                    .Include(t => t.TicketStatus)
+                    .Include(t => t.TicketType);
+
+                model.DevTickets = tickets.ToList();
+            }
+            
+            if (User.IsInRole("Submitter"))
+            {
+                var tickets = db.Tickets.Where(t=> t.CreatorUserId == userId)
+                    .Include(t => t.AssignedUser)
+                    .Include(t => t.CreatorUser)
+                    .Include(t => t.Project)
+                    .Include(t => t.TicketPriority)
+                    .Include(t => t.TicketStatus)
+                    .Include(t => t.TicketType);
+
+                model.SubTickets = tickets.ToList();
+            }
+            return View(model);
+       
         }
 
         // GET: Tickets/Details/5
@@ -38,7 +93,7 @@ namespace BugTrackerV4.Controllers
             }
             return View(ticket);
         }
-
+        [Authorize(Roles = "Submitter")]
         // GET: Tickets/Create
         public ActionResult Create()
         {
@@ -55,15 +110,16 @@ namespace BugTrackerV4.Controllers
         // POST: Tickets/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Submitter")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Ticket ticket)
-        {
+        {          
             if (ModelState.IsValid)
             {
-                ticket.Created = DateTimeOffset.Now;
                 ticket.CreatorUser = db.Users.Find(User.Identity.GetUserId());
                 ticket.TicketStatus = db.TicketStatuses.Single(t=>t.Name=="New");
+                ticket.Created = DateTimeOffset.Now;            
                 db.Tickets.Add(ticket);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -78,10 +134,52 @@ namespace BugTrackerV4.Controllers
             return View(ticket);
         }
 
-        public ActionResult AssignUser()
-        {
+        //[Authorize(Roles = "ProjectManager")]
+        //[HttpGet]
+        //public ActionResult AssignUsers(int ticketId)
+        //{
+        //    UserRolesHelper urh = new UserRolesHelper();
+        //    ViewBag.AssignedUserId = new SelectList(urh.UsersInRole("Developer"));
 
+        //    return View(db.Tickets.FirstOrDefault(t => t.Id == ticketId));
+
+        //}
+
+        //[HttpPost]
+        //public ActionResult AssignUsers(int ticketId, List<string> AssignedUserId)
+        //{
+        //    TicketHelper th = new TicketHelper();
+
+        //    if (AssignedUserId != null)
+        //    {
+        //        return View(db.Tickets.FirstOrDefault(t => t.Id == ticketId));
+        //    }
+
+        //    foreach (var userId in AssignedUserId)
+        //    {
+        //        th.AddTickettoUser(userId, ticketId);             
+        //    }
+        //    return RedirectToAction("Index", "Tickets");
+        //}
+
+        [Authorize(Roles = "ProjectManager")]
+        [HttpGet]
+        public ActionResult AssignUser(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Ticket ticket = db.Tickets.Find(id);
+            if (ticket == null)
+            {
+                return HttpNotFound();
+            }
+            UserRolesHelper urh = new UserRolesHelper();
+            ViewBag.AssignedUserId = new SelectList(urh.UsersInRole("Developer"));
+            return View(ticket);
         }
+
 
         // GET: Tickets/Edit/5
         public ActionResult Edit(int? id)

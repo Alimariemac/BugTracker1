@@ -1,0 +1,88 @@
+﻿@model IEnumerable<BugTrackerV4.Models.CodeFirst.Ticket>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <thead>
+            Assigned User
+        </thead>
+        <thead>
+           Creator User
+        </thead>
+        <thead>
+            @Html.DisplayNameFor(model => model.Project.Name)
+        </thead>
+        <thead>
+            @Html.DisplayNameFor(model => model.TicketPriority.Name)
+        </thead>
+        <thead>
+            @Html.DisplayNameFor(model => model.TicketStatus.Name)
+        </thead>
+        <thead>
+            @Html.DisplayNameFor(model => model.TicketType.Name)
+        </thead>
+        <thead>
+            @Html.DisplayNameFor(model => model.Title)
+        </thead>
+        <thead>
+            @Html.DisplayNameFor(model => model.Description)
+        </thead>
+        <thead>
+            @Html.DisplayNameFor(model => model.Created)
+        </thead>
+        <thead>
+            @Html.DisplayNameFor(model => model.Updated)
+        </thead>
+        <thead></thead>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssignedUser.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatorUser.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TicketPriority.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TicketStatus.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TicketType.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Updated)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            @Html.ActionLink("Assign Users", "AssignUser", "Tickets", new { Id = item.Id }, null)
+        </td>
+    </tr>
+}
+
+</table>

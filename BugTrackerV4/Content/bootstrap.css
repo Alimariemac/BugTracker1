@@ -278,7 +278,7 @@ table {
     display: none;
   }
   .table td,
-  .table th {
+  .table thead {
     background-color: #fff !important;
   }
   .btn > .caret,
@@ -291,7 +291,7 @@ table {
   .table {
     border-collapse: collapse !important;
   }
-  .table-bordered th,
+  .table-bordered thead,
   .table-bordered td {
     border: 1px solid #ddd !important;
   }
@@ -1409,7 +1409,7 @@ table {
   background-color: transparent;
 }
 
-th {
+thead {
   text-align: left;
 }
 
@@ -1418,9 +1418,9 @@ th {
   margin-bottom: 20px;
 }
 
-.table thead > tr > th,
-.table tbody > tr > th,
-.table tfoot > tr > th,
+.table thead > tr > thead,
+.table tbody > tr > thead,
+.table tfoot > tr > thead,
 .table thead > tr > td,
 .table tbody > tr > td,
 .table tfoot > tr > td {
@@ -1430,14 +1430,14 @@ th {
   border-top: 1px solid #dddddd;
 }
 
-.table thead > tr > th {
+.table thead > tr > thead {
   vertical-align: bottom;
   border-bottom: 2px solid #dddddd;
 }
 
-.table caption + thead tr:first-child th,
-.table colgroup + thead tr:first-child th,
-.table thead:first-child tr:first-child th,
+.table caption + thead tr:first-child thead,
+.table colgroup + thead tr:first-child thead,
+.table thead:first-child tr:first-child thead,
 .table caption + thead tr:first-child td,
 .table colgroup + thead tr:first-child td,
 .table thead:first-child tr:first-child td {
@@ -1452,9 +1452,9 @@ th {
   background-color: #ffffff;
 }
 
-.table-condensed thead > tr > th,
-.table-condensed tbody > tr > th,
-.table-condensed tfoot > tr > th,
+.table-condensed thead > tr > thead,
+.table-condensed tbody > tr > thead,
+.table-condensed tfoot > tr > thead,
 .table-condensed thead > tr > td,
 .table-condensed tbody > tr > td,
 .table-condensed tfoot > tr > td {
@@ -1465,27 +1465,27 @@ th {
   border: 1px solid #dddddd;
 }
 
-.table-bordered > thead > tr > th,
-.table-bordered > tbody > tr > th,
-.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > thead,
+.table-bordered > tbody > tr > thead,
+.table-bordered > tfoot > tr > thead,
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
   border: 1px solid #dddddd;
 }
 
-.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > thead,
 .table-bordered > thead > tr > td {
   border-bottom-width: 2px;
 }
 
 .table-striped > tbody > tr:nth-child(odd) > td,
-.table-striped > tbody > tr:nth-child(odd) > th {
+.table-striped > tbody > tr:nth-child(odd) > thead {
   background-color: #f9f9f9;
 }
 
 .table-hover > tbody > tr:hover > td,
-.table-hover > tbody > tr:hover > th {
+.table-hover > tbody > tr:hover > thead {
   background-color: #f5f5f5;
 }
 
@@ -1495,7 +1495,7 @@ table col[class*="col-"] {
 }
 
 table td[class*="col-"],
-table th[class*="col-"] {
+table thead[class*="col-"] {
   display: table-cell;
   float: none;
 }
@@ -1503,36 +1503,36 @@ table th[class*="col-"] {
 .table > thead > tr > td.active,
 .table > tbody > tr > td.active,
 .table > tfoot > tr > td.active,
-.table > thead > tr > th.active,
-.table > tbody > tr > th.active,
-.table > tfoot > tr > th.active,
+.table > thead > tr > thead.active,
+.table > tbody > tr > thead.active,
+.table > tfoot > tr > thead.active,
 .table > thead > tr.active > td,
 .table > tbody > tr.active > td,
 .table > tfoot > tr.active > td,
-.table > thead > tr.active > th,
-.table > tbody > tr.active > th,
-.table > tfoot > tr.active > th {
+.table > thead > tr.active > thead,
+.table > tbody > tr.active > thead,
+.table > tfoot > tr.active > thead {
   background-color: #f5f5f5;
 }
 
 .table > thead > tr > td.success,
 .table > tbody > tr > td.success,
 .table > tfoot > tr > td.success,
-.table > thead > tr > th.success,
-.table > tbody > tr > th.success,
-.table > tfoot > tr > th.success,
+.table > thead > tr > thead.success,
+.table > tbody > tr > thead.success,
+.table > tfoot > tr > thead.success,
 .table > thead > tr.success > td,
 .table > tbody > tr.success > td,
 .table > tfoot > tr.success > td,
-.table > thead > tr.success > th,
-.table > tbody > tr.success > th,
-.table > tfoot > tr.success > th {
+.table > thead > tr.success > thead,
+.table > tbody > tr.success > thead,
+.table > tfoot > tr.success > thead {
   background-color: #dff0d8;
   border-color: #d6e9c6;
 }
 
 .table-hover > tbody > tr > td.success:hover,
-.table-hover > tbody > tr > th.success:hover,
+.table-hover > tbody > tr > thead.success:hover,
 .table-hover > tbody > tr.success:hover > td {
   background-color: #d0e9c6;
   border-color: #c9e2b3;
@@ -1541,21 +1541,21 @@ table th[class*="col-"] {
 .table > thead > tr > td.danger,
 .table > tbody > tr > td.danger,
 .table > tfoot > tr > td.danger,
-.table > thead > tr > th.danger,
-.table > tbody > tr > th.danger,
-.table > tfoot > tr > th.danger,
+.table > thead > tr > thead.danger,
+.table > tbody > tr > thead.danger,
+.table > tfoot > tr > thead.danger,
 .table > thead > tr.danger > td,
 .table > tbody > tr.danger > td,
 .table > tfoot > tr.danger > td,
-.table > thead > tr.danger > th,
-.table > tbody > tr.danger > th,
-.table > tfoot > tr.danger > th {
+.table > thead > tr.danger > thead,
+.table > tbody > tr.danger > thead,
+.table > tfoot > tr.danger > thead {
   background-color: #f2dede;
   border-color: #eed3d7;
 }
 
 .table-hover > tbody > tr > td.danger:hover,
-.table-hover > tbody > tr > th.danger:hover,
+.table-hover > tbody > tr > thead.danger:hover,
 .table-hover > tbody > tr.danger:hover > td {
   background-color: #ebcccc;
   border-color: #e6c1c7;
@@ -1564,21 +1564,21 @@ table th[class*="col-"] {
 .table > thead > tr > td.warning,
 .table > tbody > tr > td.warning,
 .table > tfoot > tr > td.warning,
-.table > thead > tr > th.warning,
-.table > tbody > tr > th.warning,
-.table > tfoot > tr > th.warning,
+.table > thead > tr > thead.warning,
+.table > tbody > tr > thead.warning,
+.table > tfoot > tr > thead.warning,
 .table > thead > tr.warning > td,
 .table > tbody > tr.warning > td,
 .table > tfoot > tr.warning > td,
-.table > thead > tr.warning > th,
-.table > tbody > tr.warning > th,
-.table > tfoot > tr.warning > th {
+.table > thead > tr.warning > thead,
+.table > tbody > tr.warning > thead,
+.table > tfoot > tr.warning > thead {
   background-color: #fcf8e3;
   border-color: #fbeed5;
 }
 
 .table-hover > tbody > tr > td.warning:hover,
-.table-hover > tbody > tr > th.warning:hover,
+.table-hover > tbody > tr > thead.warning:hover,
 .table-hover > tbody > tr.warning:hover > td {
   background-color: #faf2cc;
   border-color: #f8e5be;
@@ -1596,9 +1596,9 @@ table th[class*="col-"] {
     margin-bottom: 0;
     background-color: #fff;
   }
-  .table-responsive > .table > thead > tr > th,
-  .table-responsive > .table > tbody > tr > th,
-  .table-responsive > .table > tfoot > tr > th,
+  .table-responsive > .table > thead > tr > thead,
+  .table-responsive > .table > tbody > tr > thead,
+  .table-responsive > .table > tfoot > tr > thead,
   .table-responsive > .table > thead > tr > td,
   .table-responsive > .table > tbody > tr > td,
   .table-responsive > .table > tfoot > tr > td {
@@ -1607,25 +1607,25 @@ table th[class*="col-"] {
   .table-responsive > .table-bordered {
     border: 0;
   }
-  .table-responsive > .table-bordered > thead > tr > th:first-child,
-  .table-responsive > .table-bordered > tbody > tr > th:first-child,
-  .table-responsive > .table-bordered > tfoot > tr > th:first-child,
+  .table-responsive > .table-bordered > thead > tr > thead:first-child,
+  .table-responsive > .table-bordered > tbody > tr > thead:first-child,
+  .table-responsive > .table-bordered > tfoot > tr > thead:first-child,
   .table-responsive > .table-bordered > thead > tr > td:first-child,
   .table-responsive > .table-bordered > tbody > tr > td:first-child,
   .table-responsive > .table-bordered > tfoot > tr > td:first-child {
     border-left: 0;
   }
-  .table-responsive > .table-bordered > thead > tr > th:last-child,
-  .table-responsive > .table-bordered > tbody > tr > th:last-child,
-  .table-responsive > .table-bordered > tfoot > tr > th:last-child,
+  .table-responsive > .table-bordered > thead > tr > thead:last-child,
+  .table-responsive > .table-bordered > tbody > tr > thead:last-child,
+  .table-responsive > .table-bordered > tfoot > tr > thead:last-child,
   .table-responsive > .table-bordered > thead > tr > td:last-child,
   .table-responsive > .table-bordered > tbody > tr > td:last-child,
   .table-responsive > .table-bordered > tfoot > tr > td:last-child {
     border-right: 0;
   }
-  .table-responsive > .table-bordered > thead > tr:last-child > th,
-  .table-responsive > .table-bordered > tbody > tr:last-child > th,
-  .table-responsive > .table-bordered > tfoot > tr:last-child > th,
+  .table-responsive > .table-bordered > thead > tr:last-child > thead,
+  .table-responsive > .table-bordered > tbody > tr:last-child > thead,
+  .table-responsive > .table-bordered > tfoot > tr:last-child > thead,
   .table-responsive > .table-bordered > thead > tr:last-child > td,
   .table-responsive > .table-bordered > tbody > tr:last-child > td,
   .table-responsive > .table-bordered > tfoot > tr:last-child > td {
@@ -2471,15 +2471,15 @@ input[type="button"].btn-block {
   content: "\e009";
 }
 
-.glyphicon-th-large:before {
+.glyphicon-thead-large:before {
   content: "\e010";
 }
 
-.glyphicon-th:before {
+.glyphicon-thead:before {
   content: "\e011";
 }
 
-.glyphicon-th-list:before {
+.glyphicon-thead-list:before {
   content: "\e012";
 }
 
@@ -6267,7 +6267,7 @@ tr.visible-xs {
   display: none !important;
 }
 
-th.visible-xs,
+thead.visible-xs,
 td.visible-xs {
   display: none !important;
 }
@@ -6279,7 +6279,7 @@ td.visible-xs {
   tr.visible-xs {
     display: table-row !important;
   }
-  th.visible-xs,
+  thead.visible-xs,
   td.visible-xs {
     display: table-cell !important;
   }
@@ -6292,7 +6292,7 @@ td.visible-xs {
   tr.visible-xs.visible-sm {
     display: table-row !important;
   }
-  th.visible-xs.visible-sm,
+  thead.visible-xs.visible-sm,
   td.visible-xs.visible-sm {
     display: table-cell !important;
   }
@@ -6305,7 +6305,7 @@ td.visible-xs {
   tr.visible-xs.visible-md {
     display: table-row !important;
   }
-  th.visible-xs.visible-md,
+  thead.visible-xs.visible-md,
   td.visible-xs.visible-md {
     display: table-cell !important;
   }
@@ -6318,7 +6318,7 @@ td.visible-xs {
   tr.visible-xs.visible-lg {
     display: table-row !important;
   }
-  th.visible-xs.visible-lg,
+  thead.visible-xs.visible-lg,
   td.visible-xs.visible-lg {
     display: table-cell !important;
   }
@@ -6332,7 +6332,7 @@ tr.visible-sm {
   display: none !important;
 }
 
-th.visible-sm,
+thead.visible-sm,
 td.visible-sm {
   display: none !important;
 }
@@ -6344,7 +6344,7 @@ td.visible-sm {
   tr.visible-sm.visible-xs {
     display: table-row !important;
   }
-  th.visible-sm.visible-xs,
+  thead.visible-sm.visible-xs,
   td.visible-sm.visible-xs {
     display: table-cell !important;
   }
@@ -6357,7 +6357,7 @@ td.visible-sm {
   tr.visible-sm {
     display: table-row !important;
   }
-  th.visible-sm,
+  thead.visible-sm,
   td.visible-sm {
     display: table-cell !important;
   }
@@ -6370,7 +6370,7 @@ td.visible-sm {
   tr.visible-sm.visible-md {
     display: table-row !important;
   }
-  th.visible-sm.visible-md,
+  thead.visible-sm.visible-md,
   td.visible-sm.visible-md {
     display: table-cell !important;
   }
@@ -6383,7 +6383,7 @@ td.visible-sm {
   tr.visible-sm.visible-lg {
     display: table-row !important;
   }
-  th.visible-sm.visible-lg,
+  thead.visible-sm.visible-lg,
   td.visible-sm.visible-lg {
     display: table-cell !important;
   }
@@ -6397,7 +6397,7 @@ tr.visible-md {
   display: none !important;
 }
 
-th.visible-md,
+thead.visible-md,
 td.visible-md {
   display: none !important;
 }
@@ -6409,7 +6409,7 @@ td.visible-md {
   tr.visible-md.visible-xs {
     display: table-row !important;
   }
-  th.visible-md.visible-xs,
+  thead.visible-md.visible-xs,
   td.visible-md.visible-xs {
     display: table-cell !important;
   }
@@ -6422,7 +6422,7 @@ td.visible-md {
   tr.visible-md.visible-sm {
     display: table-row !important;
   }
-  th.visible-md.visible-sm,
+  thead.visible-md.visible-sm,
   td.visible-md.visible-sm {
     display: table-cell !important;
   }
@@ -6435,7 +6435,7 @@ td.visible-md {
   tr.visible-md {
     display: table-row !important;
   }
-  th.visible-md,
+  thead.visible-md,
   td.visible-md {
     display: table-cell !important;
   }
@@ -6448,7 +6448,7 @@ td.visible-md {
   tr.visible-md.visible-lg {
     display: table-row !important;
   }
-  th.visible-md.visible-lg,
+  thead.visible-md.visible-lg,
   td.visible-md.visible-lg {
     display: table-cell !important;
   }
@@ -6462,7 +6462,7 @@ tr.visible-lg {
   display: none !important;
 }
 
-th.visible-lg,
+thead.visible-lg,
 td.visible-lg {
   display: none !important;
 }
@@ -6474,7 +6474,7 @@ td.visible-lg {
   tr.visible-lg.visible-xs {
     display: table-row !important;
   }
-  th.visible-lg.visible-xs,
+  thead.visible-lg.visible-xs,
   td.visible-lg.visible-xs {
     display: table-cell !important;
   }
@@ -6487,7 +6487,7 @@ td.visible-lg {
   tr.visible-lg.visible-sm {
     display: table-row !important;
   }
-  th.visible-lg.visible-sm,
+  thead.visible-lg.visible-sm,
   td.visible-lg.visible-sm {
     display: table-cell !important;
   }
@@ -6500,7 +6500,7 @@ td.visible-lg {
   tr.visible-lg.visible-md {
     display: table-row !important;
   }
-  th.visible-lg.visible-md,
+  thead.visible-lg.visible-md,
   td.visible-lg.visible-md {
     display: table-cell !important;
   }
@@ -6513,7 +6513,7 @@ td.visible-lg {
   tr.visible-lg {
     display: table-row !important;
   }
-  th.visible-lg,
+  thead.visible-lg,
   td.visible-lg {
     display: table-cell !important;
   }
@@ -6527,7 +6527,7 @@ tr.hidden-xs {
   display: table-row !important;
 }
 
-th.hidden-xs,
+thead.hidden-xs,
 td.hidden-xs {
   display: table-cell !important;
 }
@@ -6539,7 +6539,7 @@ td.hidden-xs {
   tr.hidden-xs {
     display: none !important;
   }
-  th.hidden-xs,
+  thead.hidden-xs,
   td.hidden-xs {
     display: none !important;
   }
@@ -6552,7 +6552,7 @@ td.hidden-xs {
   tr.hidden-xs.hidden-sm {
     display: none !important;
   }
-  th.hidden-xs.hidden-sm,
+  thead.hidden-xs.hidden-sm,
   td.hidden-xs.hidden-sm {
     display: none !important;
   }
@@ -6565,7 +6565,7 @@ td.hidden-xs {
   tr.hidden-xs.hidden-md {
     display: none !important;
   }
-  th.hidden-xs.hidden-md,
+  thead.hidden-xs.hidden-md,
   td.hidden-xs.hidden-md {
     display: none !important;
   }
@@ -6578,7 +6578,7 @@ td.hidden-xs {
   tr.hidden-xs.hidden-lg {
     display: none !important;
   }
-  th.hidden-xs.hidden-lg,
+  thead.hidden-xs.hidden-lg,
   td.hidden-xs.hidden-lg {
     display: none !important;
   }
@@ -6592,7 +6592,7 @@ tr.hidden-sm {
   display: table-row !important;
 }
 
-th.hidden-sm,
+thead.hidden-sm,
 td.hidden-sm {
   display: table-cell !important;
 }
@@ -6604,7 +6604,7 @@ td.hidden-sm {
   tr.hidden-sm.hidden-xs {
     display: none !important;
   }
-  th.hidden-sm.hidden-xs,
+  thead.hidden-sm.hidden-xs,
   td.hidden-sm.hidden-xs {
     display: none !important;
   }
@@ -6617,7 +6617,7 @@ td.hidden-sm {
   tr.hidden-sm {
     display: none !important;
   }
-  th.hidden-sm,
+  thead.hidden-sm,
   td.hidden-sm {
     display: none !important;
   }
@@ -6630,7 +6630,7 @@ td.hidden-sm {
   tr.hidden-sm.hidden-md {
     display: none !important;
   }
-  th.hidden-sm.hidden-md,
+  thead.hidden-sm.hidden-md,
   td.hidden-sm.hidden-md {
     display: none !important;
   }
@@ -6643,7 +6643,7 @@ td.hidden-sm {
   tr.hidden-sm.hidden-lg {
     display: none !important;
   }
-  th.hidden-sm.hidden-lg,
+  thead.hidden-sm.hidden-lg,
   td.hidden-sm.hidden-lg {
     display: none !important;
   }
@@ -6657,7 +6657,7 @@ tr.hidden-md {
   display: table-row !important;
 }
 
-th.hidden-md,
+thead.hidden-md,
 td.hidden-md {
   display: table-cell !important;
 }
@@ -6669,7 +6669,7 @@ td.hidden-md {
   tr.hidden-md.hidden-xs {
     display: none !important;
   }
-  th.hidden-md.hidden-xs,
+  thead.hidden-md.hidden-xs,
   td.hidden-md.hidden-xs {
     display: none !important;
   }
@@ -6682,7 +6682,7 @@ td.hidden-md {
   tr.hidden-md.hidden-sm {
     display: none !important;
   }
-  th.hidden-md.hidden-sm,
+  thead.hidden-md.hidden-sm,
   td.hidden-md.hidden-sm {
     display: none !important;
   }
@@ -6695,7 +6695,7 @@ td.hidden-md {
   tr.hidden-md {
     display: none !important;
   }
-  th.hidden-md,
+  thead.hidden-md,
   td.hidden-md {
     display: none !important;
   }
@@ -6708,7 +6708,7 @@ td.hidden-md {
   tr.hidden-md.hidden-lg {
     display: none !important;
   }
-  th.hidden-md.hidden-lg,
+  thead.hidden-md.hidden-lg,
   td.hidden-md.hidden-lg {
     display: none !important;
   }
@@ -6722,7 +6722,7 @@ tr.hidden-lg {
   display: table-row !important;
 }
 
-th.hidden-lg,
+thead.hidden-lg,
 td.hidden-lg {
   display: table-cell !important;
 }
@@ -6734,7 +6734,7 @@ td.hidden-lg {
   tr.hidden-lg.hidden-xs {
     display: none !important;
   }
-  th.hidden-lg.hidden-xs,
+  thead.hidden-lg.hidden-xs,
   td.hidden-lg.hidden-xs {
     display: none !important;
   }
@@ -6747,7 +6747,7 @@ td.hidden-lg {
   tr.hidden-lg.hidden-sm {
     display: none !important;
   }
-  th.hidden-lg.hidden-sm,
+  thead.hidden-lg.hidden-sm,
   td.hidden-lg.hidden-sm {
     display: none !important;
   }
@@ -6760,7 +6760,7 @@ td.hidden-lg {
   tr.hidden-lg.hidden-md {
     display: none !important;
   }
-  th.hidden-lg.hidden-md,
+  thead.hidden-lg.hidden-md,
   td.hidden-lg.hidden-md {
     display: none !important;
   }
@@ -6773,7 +6773,7 @@ td.hidden-lg {
   tr.hidden-lg {
     display: none !important;
   }
-  th.hidden-lg,
+  thead.hidden-lg,
   td.hidden-lg {
     display: none !important;
   }
@@ -6787,7 +6787,7 @@ tr.visible-print {
   display: none !important;
 }
 
-th.visible-print,
+thead.visible-print,
 td.visible-print {
   display: none !important;
 }
@@ -6799,7 +6799,7 @@ td.visible-print {
   tr.visible-print {
     display: table-row !important;
   }
-  th.visible-print,
+  thead.visible-print,
   td.visible-print {
     display: table-cell !important;
   }
@@ -6809,7 +6809,7 @@ td.visible-print {
   tr.hidden-print {
     display: none !important;
   }
-  th.hidden-print,
+  thead.hidden-print,
   td.hidden-print {
     display: none !important;
   }
