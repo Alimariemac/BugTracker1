@@ -1,0 +1,25 @@
+﻿@model BugTrackerV4.Models.ProjectDevViewModel
+
+@{
+    ViewBag.Title = "AssignDev";
+}
+
+<h2>@Model.project.Name</h2>
+
+@using (Html.BeginForm())
+{ 
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.project.Id)
+        <div class="form-group">
+            @Html.LabelFor(model => model.DevUsers, "Developers", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ListBoxFor(item => item.SelectedUsers, Model.DevUsers, htmlAttributes: new { @id = "mySelect" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Assign Developer(s)" class="btn btn-default" />
+            </div>
+        </div>
+                   }

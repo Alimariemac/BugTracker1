@@ -93,6 +93,36 @@ namespace BugTrackerV4.Controllers
             }
             return View(ticket);
         }
+
+        public ActionResult AssignDev(int? ticketId)
+        {
+            AssignDeveloperViewModel vm = new AssignDeveloperViewModel();
+            ProjectHelper ph = new ProjectHelper();
+            
+            var tkt = db.Tickets.Find(ticketId);
+            var devs = ph.ProjectUsersByRole(tkt.ProjectId, "Developer");
+
+            vm.DevUsers = new SelectList(devs, "Id", "FullName");
+            vm.ticket = tkt;
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AssignDev(AssignDeveloperViewModel devVM)
+        {
+            if (ModelState.IsValid)
+            {
+                var tkt = db.Tickets.Find(devVM.ticket.Id);
+                tkt.AssignedUserId = devVM.SelectedUser;
+                db.SaveChanges();
+                return RedirectToAction("Details", "Projects", new { id = tkt.ProjectId });
+            }
+            return View(devVM.ticket.Id);
+        }
+
+
         [Authorize(Roles = "Submitter")]
         // GET: Tickets/Create
         public ActionResult Create()
@@ -122,7 +152,7 @@ namespace BugTrackerV4.Controllers
                 ticket.Created = DateTimeOffset.Now;            
                 db.Tickets.Add(ticket);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Projects", new {id=ticket.ProjectId } );
             }
             UserRolesHelper urh = new UserRolesHelper();
             ViewBag.AssignedUserId = new SelectList(urh.UsersInRole("Developer"), "Id", "FirstName", ticket.AssignedUserId);

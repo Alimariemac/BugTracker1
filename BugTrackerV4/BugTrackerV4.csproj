@@ -173,6 +173,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\ProjectUsersController.cs" />
+    <Compile Include="Controllers\TicketCommentsController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -182,6 +183,8 @@
     <Compile Include="Helpers\UserRolesHelper.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AssignDeveloperViewModel.cs" />
+    <Compile Include="Models\AdminProjectViewModel.cs" />
     <Compile Include="Models\AdminUserViewModel.cs" />
     <Compile Include="Models\CodeFirst\Project.cs" />
     <Compile Include="Models\CodeFirst\ProjectUser.cs" />
@@ -195,6 +198,8 @@
     <Compile Include="Models\CodeFirst\TicketType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProjectDevViewModel.cs" />
+    <Compile Include="Models\ProjectPMViewModel.cs" />
     <Compile Include="Models\ProjectUsersViewModel.cs" />
     <Compile Include="Models\TicketIndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -272,6 +277,14 @@
     <Content Include="Views\Tickets\Index.cshtml" />
     <Content Include="Views\Tickets\AssignUser.cshtml" />
     <Content Include="Views\Tickets\Index - Copy.cshtml" />
+    <Content Include="Views\Projects\AssignPM.cshtml" />
+    <Content Include="Views\Projects\AssignDev.cshtml" />
+    <Content Include="Views\Tickets\AssignDev.cshtml" />
+    <Content Include="Views\TicketComments\Create.cshtml" />
+    <Content Include="Views\TicketComments\Delete.cshtml" />
+    <Content Include="Views\TicketComments\Details.cshtml" />
+    <Content Include="Views\TicketComments\Edit.cshtml" />
+    <Content Include="Views\TicketComments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

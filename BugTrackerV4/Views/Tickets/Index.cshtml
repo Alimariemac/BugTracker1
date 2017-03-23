@@ -9,7 +9,8 @@
 <p>
     @*@Html.ActionLink("Create New", "Create")*@
 </p>
-<h2> All Tickets</h2>
+@if (User.IsInRole("Admin"))
+{<h2> All Tickets</h2>
 <table class="table">
     <thead>
         <tr>
@@ -92,7 +93,9 @@
 
     }</tbody>
 
-</table>
+</table>}
+@if (User.IsInRole("ProjectManager"))
+{
 <h2> Project Manager Tickets</h2>
     <table class="table">
         <thead>
@@ -176,6 +179,9 @@
         </tbody>
 
     </table>
+}
+@if (User.IsInRole("Developer"))
+{
 <h2> Developer Tickets</h2>
 <table class="table">
     <thead>
@@ -258,6 +264,9 @@
     </tbody>
 
 </table>
+}
+@if (User.IsInRole("Submitter"))
+{
 <h2> Submitter Tickets</h2>
 <table class="table">
     <thead>
@@ -341,7 +350,7 @@
     </tbody>
 
 </table>
-
+}
 @section scripts{
 
     <script>

@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Details";
 }
-
+@using Microsoft.AspNet.Identity
 <h2>Details</h2>
 
 <div>
@@ -92,7 +92,37 @@
 
     </dl>
 </div>
+@{ 
+    var userId = User.Identity.GetUserId();
+
+    foreach (var comment in Model.TicketComments)
+    {
+
+    <div class="row">
+        <div class="col-sm-3">
+            <p class="small-font">Posted at @comment.Created by @comment.User.FullName
+        </div>
+        <div class="col-sm-9"> @comment.Comment</div>
+       @if (comment.User.Id==userId||User.IsInRole("Admin"))
+       {
+           @Html.ActionLink("Delete Comment", "Delete", "TicketComments", new { id=comment.Id},null)
+        @Html.ActionLink("Edit Comment", "Edit", "TicketComments", new { id = comment.Id },null)
+
+       }
+    </div>
+}
+
+using (Html.BeginForm("Create", "TicketComments", FormMethod.Post))
+
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="TicketId" value="@Model.Id" />
+                    <textarea name="comment" style="width:100%;border:solid .5px #333;" rows="5"></textarea>
+                    <button type="submit" class="btn btn-default" style="float:right; margin-top:15px;">Submit Comment</button>
+}
+    }
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Assign Dev", "AssignDev", new { ticketId=Model.Id})
 </p>

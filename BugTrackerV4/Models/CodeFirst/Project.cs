@@ -14,7 +14,9 @@ namespace BugTrackerV4.Models.CodeFirst
         }
         public int Id { get; set; }
         public string Name { get; set; }
+        public string PMID { get; set; }
 
+       
         public virtual ICollection<Ticket> Tickets { get; set; }
         public virtual ICollection<ApplicationUser> Users { get; set; }
     }

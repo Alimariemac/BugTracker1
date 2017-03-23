@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BugTrackerV4.Models.CodeFirst.Project>
+﻿@model IEnumerable<BugTrackerV4.Models.ProjectPMViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -16,42 +16,37 @@
    
     <thead>
         <tr>
-            <thead>Projects</thead>
-            <thead>Details</thead>
-            @if (User.IsInRole("Admin") || User.IsInRole("ProjectManager"))
-            {
-            <thead>Edit</thead>
-            <thead>Delete</thead>
-            <thead>Assign Users</thead>
-            <thead>Unassign Users</thead>}
-            <thead>Add Ticket</thead>
-        </tr>
-    </thead>
+            <th>Projects</th>
+            <th>Project Manager</th>
+            </tr>
+            </thead>      
+   
     <tbody>
 
         @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                
-                    <td>@Html.ActionLink("Details", "Details", new { id = item.Id })</td>
-                   
-                       @if (User.IsInRole("Admin") || User.IsInRole("ProjectManager"))
-                       {
-                        <td> @Html.ActionLink("Edit", "Edit", new { id = item.Id })</td>
-                        <td>@Html.ActionLink("Delete", "Delete", new { id = item.Id })</td>
-                        <td>@Html.ActionLink("Assign Users", "AssignUsers", "ProjectUsers", new { projectId = item.Id }, null)</td>
-                       <td> @Html.ActionLink("Unassign Users", "unassignUsers", "ProjectUsers", new { projectId = item.Id }, null)</td>}
-                        @if (User.IsInRole("Submitter"))
-                        {<td> @Html.ActionLink("Add Ticket", "Create", "Tickets", new { projectId = item.Id }, null)</td>}
-                       
-                    
+                    @Html.DisplayFor(modelItem => item.project.Name)
+                </td>              
+                    @if (item.ProjectManager != null)
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem=> item.ProjectManager.FullName)
+                       </td>
+                    }
+                    else
+                    {
+                        <td>Not Assigned
+                        </td>
+                    }
 
-               
-            </tr>
-        }
+                <td>@Html.ActionLink("Edit", "Edit", new { id = item.project.Id }) </td>
+                <td> @Html.ActionLink("Details", "Details", new { id = item.project.Id }) </td>
+                <td>@Html.ActionLink("Delete", "Delete", new { id = item.project.Id })</td>
+                </tr>
+
+                    }
         </tbody>
 
 </table>

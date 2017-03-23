@@ -18,20 +18,85 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt>
-            Assigned Users
+            Project Users
         </dt>
 
         <dd>
             @foreach (var user in Model.Users)
             {
+                
                 <p>@user.FullName</p>
+
             }
         </dd>
 
     </dl>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Assigned User
+                </th>
+                <th>
+                    Ticket Priority
+                </th>
+                <th>
+                    Ticket Status
+                </th>
+                <th>
+                    Ticket Name
+                </th>
+                <th>
+                    Date Created
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model.Tickets)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AssignedUser.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TicketPriority.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TicketStatus.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @item.Created.Date.ToString("MM/dd/yyy")
+                    </td>   
+                    <td>
+                        @Html.ActionLink("Edit", "Edit","Tickets", new { id = item.Id }, null)
+                        @Html.ActionLink("Details", "Details", "Tickets", new { id = item.Id }, null)
+                        @Html.ActionLink("Delete", "Delete", "Tickets", new { id = item.Id }, null)
+                    </td>               
+                </tr>
+            }
+        </tbody>
+
+    </table>
 </div>
 <p>
     
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Add Ticket", "Create", "Tickets", new { projectId = Model.Id }, null)
+    @Html.ActionLink("Assign PM", "AssignPM", "Projects", new { id = Model.Id }, null)
+    @Html.ActionLink("Assign Users","AssignUsers", "ProjectUsers", new {projectId=Model.Id }, null )
+    @Html.ActionLink("Unassign Users", "unassignUsers", "ProjectUsers", new { projectId = Model.Id }, null)
+    @Html.ActionLink("Add Developers", "AssignDev", new {id=Model.Id })
 </p>
+@section scripts{
+
+    <script>
+$(document).ready(function () {
+    $('.table').DataTable();
+});</script>
+}
