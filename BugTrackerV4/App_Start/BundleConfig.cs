@@ -21,11 +21,24 @@ namespace BugTrackerV4
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/jquery.min.js",
+                      "~/Scripts/metisMenu.min.js",
+                      "~/Scripts/custom.js",
+                      "~/Scripts/d3.v3.js",
+                      "~/Scripts/rickshaw.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/style.css",
+                      "~/Content/lines.css",
+                      "~/Content/font-awesome.css",
+                      "~/Content/custom.css",
+                      "~/Content/clndr.css",
+                      "~/Content/jqvmap.css",              
+                      "~/Content/Alicia.css"
+                      ));
+
         }
     }
 }

@@ -92,9 +92,32 @@
 
     </dl>
 </div>
-@{ 
-    var userId = User.Identity.GetUserId();
 
+@{
+    var userId = User.Identity.GetUserId();
+    <p>
+        @if (Model.Project.PMID == userId)
+        { @Html.ActionLink("Assign Dev", "AssignDev", new { ticketId = Model.Id }) }
+        @if (Model.Project.PMID == userId || User.IsInRole("Admin"))
+        { @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) }
+        @Html.ActionLink("Back to List", "Index")
+
+    </p>
+    if (User.IsInRole("Admin") || Model.CreatorUserId == userId || Model.AssignedUserId == userId || Model.Project.PMID == userId)
+    {
+        foreach (var att in Model.TicketAttachments)
+        {
+            if (att.FileUrl != "")
+            {
+        <div class="row">
+        <img src=@Url.Content(att.FileUrl) class="img-responsive"/>
+        </div>
+        <div class="row">
+            <p>@att.Description by @att.Users.FullName</p>
+        </div>
+            }
+        }
+    }
     foreach (var comment in Model.TicketComments)
     {
 
@@ -103,26 +126,74 @@
             <p class="small-font">Posted at @comment.Created by @comment.User.FullName
         </div>
         <div class="col-sm-9"> @comment.Comment</div>
-       @if (comment.User.Id==userId||User.IsInRole("Admin"))
+       @if (comment.User.Id == userId || User.IsInRole("Admin"))
        {
-           @Html.ActionLink("Delete Comment", "Delete", "TicketComments", new { id=comment.Id},null)
-        @Html.ActionLink("Edit Comment", "Edit", "TicketComments", new { id = comment.Id },null)
+           @Html.ActionLink("Delete Comment", "Delete", "TicketComments", new { id = comment.Id }, null)
+        @Html.ActionLink("Edit Comment", "Edit", "TicketComments", new { id = comment.Id }, null)
 
        }
     </div>
-}
+    }
 
-using (Html.BeginForm("Create", "TicketComments", FormMethod.Post))
 
-{
+    using (Html.BeginForm("Create", "TicketComments", FormMethod.Post))
+
+    {
     @Html.AntiForgeryToken()
     <input type="hidden" name="TicketId" value="@Model.Id" />
                     <textarea name="comment" style="width:100%;border:solid .5px #333;" rows="5"></textarea>
                     <button type="submit" class="btn btn-default" style="float:right; margin-top:15px;">Submit Comment</button>
-}
     }
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-    @Html.ActionLink("Assign Dev", "AssignDev", new { ticketId=Model.Id})
-</p>
+    if (User.IsInRole("Admin") || Model.CreatorUserId == userId || Model.AssignedUserId == userId || Model.Project.PMID == userId) {
+        using (Html.BeginForm("Create", "TicketAttachments", FormMethod.Post, new { enctype = "Multipart/form-data" }))
+        {
+         @Html.AntiForgeryToken()
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="hidden" name="TicketId" value="@Model.Id" />
+                <textarea name="Description" style="width:100%;border:solid .5px #333;" rows="5"></textarea>
+                <input type="file" name="Image" id="fileUpload" onchange="loadFile(event)" class="form-control" required />
+                @*@Html.EditorFor(model => model.MediaUrl, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TicketAttachments, "", new { @class = "text-danger" })*@
+                <div style="max-height:200px; max-width:200px">
+                    @if (!string.IsNullOrWhiteSpace("Image"))
+                    {
+                        <h5><strong>Media preview</strong></h5>
+                        <img class="img-responsive" id="output" />
+                    }
+                </div>
+                <label for="file">Filename:</label>
+                <input type="file" name="file" id="filePath" onchange="loadFile(event)" class="form-control"/>
+                <button type="submit" class="btn btn-default" style="float:right; margin-top:15px;">Submit Attachment</button>
+            </div>
+        </div>
+            }
+        }
+    }
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/tinymce/jquery.tinymce.min.js"></script>
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            tinymce.init({
+                selector: '#Body'
+            });
+        });
+    </script>
+    <script>
+  var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('output');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+    </script>
+}
+
+
+
+

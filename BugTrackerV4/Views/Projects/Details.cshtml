@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Details";
 }
+@using Microsoft.AspNet.Identity
 
 <h2>Details</h2>
 
@@ -18,13 +19,13 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt>
-            Project Users
+            Project Developers
         </dt>
 
         <dd>
             @foreach (var user in Model.Users)
             {
-                
+
                 <p>@user.FullName</p>
 
             }
@@ -73,7 +74,7 @@
                         @item.Created.Date.ToString("MM/dd/yyy")
                     </td>   
                     <td>
-                        @Html.ActionLink("Edit", "Edit","Tickets", new { id = item.Id }, null)
+                        @Html.ActionLink("Edit", "Edit", "Tickets", new { id = item.Id }, null)
                         @Html.ActionLink("Details", "Details", "Tickets", new { id = item.Id }, null)
                         @Html.ActionLink("Delete", "Delete", "Tickets", new { id = item.Id }, null)
                     </td>               
@@ -85,13 +86,17 @@
 </div>
 <p>
     
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    
     @Html.ActionLink("Back to List", "Index")
     @Html.ActionLink("Add Ticket", "Create", "Tickets", new { projectId = Model.Id }, null)
-    @Html.ActionLink("Assign PM", "AssignPM", "Projects", new { id = Model.Id }, null)
-    @Html.ActionLink("Assign Users","AssignUsers", "ProjectUsers", new {projectId=Model.Id }, null )
-    @Html.ActionLink("Unassign Users", "unassignUsers", "ProjectUsers", new { projectId = Model.Id }, null)
-    @Html.ActionLink("Add Developers", "AssignDev", new {id=Model.Id })
+    @if (User.IsInRole("Admin"))
+    {@Html.ActionLink("Assign PM", "AssignPM", "Projects", new { id = Model.Id }, null)
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) 
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Id })}
+@{
+    var userId = User.Identity.GetUserId();
+    if (userId == Model.PMID) {@Html.ActionLink("Add Developers To Project", "AssignDev", new { id = Model.Id })}
+    }
 </p>
 @section scripts{
 

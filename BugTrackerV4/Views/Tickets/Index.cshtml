@@ -3,14 +3,15 @@
 @{
     ViewBag.Title = "Index";
 }
+@using Microsoft.AspNet.Identity
 
+    
 <h2>Index</h2>
 
 <p>
     @*@Html.ActionLink("Create New", "Create")*@
 </p>
-@if (User.IsInRole("Admin"))
-{<h2> All Tickets</h2>
+<h2> All Tickets</h2>
 <table class="table">
     <thead>
         <tr>
@@ -83,17 +84,18 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Updated)
             </td>
-            <td>
+           @if (User.IsInRole("Admin"))
+           { <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 @Html.ActionLink("Assign Users", "AssignUser", "Tickets", new { Id = item.Id }, null)
-            </td>
+            </td>}
         </tr>
+    }
+    </tbody>
 
-    }</tbody>
-
-</table>}
+</table>
 @if (User.IsInRole("ProjectManager"))
 {
 <h2> Project Manager Tickets</h2>
@@ -256,8 +258,9 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                     @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    @Html.ActionLink("Assign Users", "AssignUser", "Tickets", new { Id = item.Id }, null)
+                     @if(User.IsInRole("Admin"))
+                     {@Html.ActionLink("Delete", "Delete", new { id = item.Id })}
+                     
                 </td>
             </tr>
         }
@@ -343,14 +346,13 @@
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                     @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    @Html.ActionLink("Assign Users", "AssignUser", "Tickets", new { Id = item.Id }, null)
                 </td>
             </tr>
         }
     </tbody>
 
 </table>
-}
+    } 
 @section scripts{
 
     <script>

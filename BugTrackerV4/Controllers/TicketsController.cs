@@ -24,18 +24,16 @@ namespace BugTrackerV4.Controllers
             var userId = User.Identity.GetUserId();
             TicketIndexViewModel model = new TicketIndexViewModel();
             UserRolesHelper urHelper = new UserRolesHelper();
-
-            if (User.IsInRole("Admin"))
-            {
-                var tickets = db.Tickets.Include(t => t.AssignedUser)
+            
+                var alltickets = db.Tickets.Include(t => t.AssignedUser)
                     .Include(t => t.CreatorUser)
                     .Include(t => t.Project)
                     .Include(t => t.TicketPriority)
                     .Include(t => t.TicketStatus)
                     .Include(t => t.TicketType);
 
-                model.AdminTickets = tickets.ToList();
-            }
+                model.AdminTickets = alltickets.ToList();
+            
 
             if (User.IsInRole("ProjectManager"))
             {
@@ -148,6 +146,7 @@ namespace BugTrackerV4.Controllers
             if (ModelState.IsValid)
             {
                 ticket.CreatorUser = db.Users.Find(User.Identity.GetUserId());
+                ticket.TicketPriority = db.TicketPriorities.Single(p => p.Name == "Low");
                 ticket.TicketStatus = db.TicketStatuses.Single(t=>t.Name=="New");
                 ticket.Created = DateTimeOffset.Now;            
                 db.Tickets.Add(ticket);
@@ -241,6 +240,7 @@ namespace BugTrackerV4.Controllers
         {
             if (ModelState.IsValid)
             {
+                ticket.Updated = DateTimeOffset.Now;
                 db.Entry(ticket).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

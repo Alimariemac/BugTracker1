@@ -3,8 +3,123 @@
 @{
     ViewBag.Title = "Log in";
 }
+@{
+    Layout = null;
+}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Modern an Admin Panel Category Flat Bootstarp Resposive Website Template | Login :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel='stylesheet' type='text/css' />
+    <!-- Custom CSS -->
+    <link href="~/Content/style.css" rel='stylesheet' type='text/css' />
+    <link href="~/Content/Alicia.css" rel='stylesheet' type='text/css' />
+    <link href="~/Content/font-awesome.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="/scripts/jquery.min.js"></script>
+    <!----webfonts--->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+    <!---//webfonts--->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="content/bootstrap.min.js"></script>
+</head>
+<body id="login">
+    <div class="row front-page">
+        <div class="col-sm-offset-1 col-sm-10">
+    <div class="col-sm-4"><h1 style="text-align:center;"> The Ultimate Bug Tacker</h1></div>
+    <div class="col-sm-8"><p style="text-align:right;"><span class="lead">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium </span>
+        voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt 
+        mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio 
+        cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis 
+        debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. 
+        Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."</p></div>
+        </div>
+   </div>
+       <!--end top row-->
+    <div class="row second-half">
+        <div class="col-sm-offset-1">
+        <div class="col-sm-2">
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+    {
+        @Html.AntiForgeryToken()
+    <div class="app-cam">       
+            <form>
+            <input type="hidden" class="text" name="Email" value="Admin@demo.com">          
+             <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">    
+            <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="Admin"></div>         
+        </form>
+        
+    </div>}
+            </div>
+            <div class="col-sm-2">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="app-cam">
+                        <form>
+                            <input type="hidden" class="text" name="Email" value="ProjectManager@demo.com">
+                            <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+                            <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="PM"></div>
+                        </form>
 
-<h2>@ViewBag.Title.</h2>
+                    </div>}
+            </div>
+            <div class="col-sm-2">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="app-cam">
+                        <form>
+                            <input type="hidden" class="text" name="Email" value="Developer@demo.com">
+                            <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+                            <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="Developer"></div>
+                        </form>
+
+                    </div>}
+            </div>
+            <div class="col-sm-2">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="app-cam">
+                        <form>
+                            <input type="hidden" class="text" name="Email" value="Submitter@demo.com">
+                            <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+                            <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="Submitter"></div>
+                        </form>
+
+                    </div>}
+            </div>
+            <div class="col-sm-2">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="app-cam">
+                        <form>
+                            <input type="hidden" class="text" name="Email" value="TestUser@demo.com">
+                            <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+                            <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="User"></div>
+                        </form>
+
+                    </div>}
+            </div>
+       
+        </div>
+        </div>
+
+    <div class="copy_layout login">
+        <p>Copyright &copy; 2015 Modern. All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+    </div>
+</body>
+</html>
+
+@*<h2>@ViewBag.Title.</h2>
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
@@ -47,7 +162,7 @@
                 @* Enable this once you have account confirmation enabled for password reset functionality
                     <p>
                         @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
+                    </p>
             }
         </section>
     </div>
@@ -56,7 +171,7 @@
             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>
     </div>
-</div>
+</div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
