@@ -1,31 +1,182 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using BugTrackerV4.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
 }
+@{
+    Layout = null;
+}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Modern an Admin Panel Category Flat Bootstarp Resposive Website Template | Login :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel='stylesheet' type='text/css' />
+    <!-- Custom CSS -->
+    <link href="~/Content/style.css" rel='stylesheet' type='text/css' />
+    <link href="~/Content/Alicia.css" rel='stylesheet' type='text/css' />
+    <link href="~/Content/font-awesome.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="/scripts/jquery.min.js"></script>
+    <!----webfonts--->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+    <!---//webfonts--->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="content/bootstrap.min.js"></script>
+</head>
+<body id="login">
+    <div class="row front-page">
+        <div class="col-sm-offset-1 col-sm-10">
+            <div class="col-sm-4"><h1 style="text-align:center;"> The Ultimate Bug Tacker</h1></div>
+            <div class="col-sm-8">
+                <p style="text-align:right;">
+                    <span class="lead">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium </span>
+                    voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt
+                    mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
+                    cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis
+                    debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.
+                    Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+                </p>
+            </div>
+        </div>
+    </div>
+    <!--end top row-->
+    <div class="row second-half">
+        <div class="col-sm-offset-1">
+            <div class="col-sm-2">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="app-cam">
+                        <form>
+                            <input type="hidden" class="text" name="Email" value="Admin@demo.com">
+                            <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+                            <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="Admin"></div>
+                        </form>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+                    </div>}
+            </div>
+            <div class="col-sm-2">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="app-cam">
+                        <form>
+                            <input type="hidden" class="text" name="Email" value="ProjectManager@demo.com">
+                            <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+                            <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="PM"></div>
+                        </form>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+                    </div>}
+            </div>
+            <div class="col-sm-2">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="app-cam">
+                        <form>
+                            <input type="hidden" class="text" name="Email" value="Developer@demo.com">
+                            <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+                            <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="Developer"></div>
+                        </form>
+
+                    </div>}
+            </div>
+            <div class="col-sm-2">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="app-cam">
+                        <form>
+                            <input type="hidden" class="text" name="Email" value="Submitter@demo.com">
+                            <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+                            <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="Submitter"></div>
+                        </form>
+
+                    </div>}
+            </div>
+            <div class="col-sm-2">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="app-cam">
+                        <form>
+                            <input type="hidden" class="text" name="Email" value="TestUser@demo.com">
+                            <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+                            <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="User"></div>
+                        </form>
+
+                    </div>}
+            </div>
+
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+
+    <div class="copy_layout login">
+        <p>Copyright &copy; 2015 Modern. All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+</body>
+</html>
+
+@*<h2>@ViewBag.Title.</h2>
+    <div class="row">
+        <div class="col-md-8">
+            <section id="loginForm">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h4>Use a local account to log in.</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Log in" class="btn btn-default" />
+                        </div>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Register as a new user", "Register")
+                    </p>
+                    @* Enable this once you have account confirmation enabled for password reset functionality
+                        <p>
+                            @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                        </p>
+                }
+            </section>
+        </div>
+        <div class="col-md-4">
+            <section id="socialLoginForm">
+                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            </section>
+        </div>
+    </div>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

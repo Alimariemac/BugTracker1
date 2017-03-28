@@ -1,0 +1,94 @@
+﻿@model BugTrackerV4.Models.TicketIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css " />
+</head>
+<body>
+  @if (User.IsInRole("Developer"))
+  {
+    <h2> Developer Tickets</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Creator User
+                </th>
+                <th>
+                    Project
+                </th>
+                <th>
+                    Ticket Priority
+                </th>
+                <th>
+                    Ticket Status
+                </th>
+                <th>
+                    Ticket Type
+                </th>
+                <th>
+                    Ticket Name
+                </th>
+                <th>
+                    Ticket Description
+                </th>
+                <th>
+                    Date Created
+                </th>
+                <th>
+                    Date Updated
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.DevTickets)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatorUser.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Project.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TicketPriority.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TicketStatus.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TicketType.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Created)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Updated)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @if (User.IsInRole("Admin"))
+                        {@Html.ActionLink("Delete", "Delete", new { id = item.Id })}
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+  }
+</body>
+</html>
