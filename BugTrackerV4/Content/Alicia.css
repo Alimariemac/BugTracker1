@@ -14,3 +14,7 @@
   margin:0px;
 
 }
+
+.dataTables_wrapper no-footer{
+padding-top:20px !important;
+}

@@ -1840,7 +1840,7 @@ h3.count.text-light {
   float: left;
 }
 label.round {
-  background: #DC483A;
+  background: rgb(6, 217, 149);
   width: 10px;
   height: 10px;
   display: block;

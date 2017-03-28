@@ -1,37 +1,51 @@
 ﻿@model BugTrackerV4.Models.CodeFirst.Project
 
-@{
-    ViewBag.Title = "Details";
-}
 @using Microsoft.AspNet.Identity
-
-<h2>Details</h2>
-
-<div>
-    <h4>Project</h4>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css " />
+</head>
+<body>
+    <h1 style="text-align:center">@Html.DisplayFor(model => model.Name)</h1>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            Project Developers
-        </dt>
-
-        <dd>
+    <div class="row" style="padding:20px;">
+        <div class="col-sm-4" style="padding-top:35px;">
+            <h3 style="text-align:center">
+                Developers on Project
+            </h3>           
+            <br>
             @foreach (var user in Model.Users)
             {
+                <div class="row">
+                    <div class="stats-info3">
+                        <div class="online">
+                            <a href="#">
+                                <div class="online-top">
+                                    <div class="top-at">
+                                        <img class="img-responsive" src="~/Images/2.png" alt="">
+                                    </div>
+                                    <div class="top-on">
+                                        <div class="top-on1">
+                                            <p>@user.FullName</p>
+                                        </div>
+                                        <label class="round"> </label>
+                                        <div class="clearfix"> </div>
+                                    </div>
+                                    <div class="clearfix"> </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
 
-                <p>@user.FullName</p>
-
+                </div>
             }
-        </dd>
-
-    </dl>
+        </div>
+        <div class="col-sm-8 divide">
+                    @Html.Partial("_CreateTicketPartial.cshtml", new {Model.Tickets})
+        </div>
+    </div>
+    <h3 style="text-align:center">Tickets on Project</h3>
     <table class="table">
         <thead>
             <tr>
@@ -39,18 +53,20 @@
                     Assigned User
                 </th>
                 <th>
-                    Ticket Priority
+                    Priority
                 </th>
                 <th>
-                    Ticket Status
+                    Status
                 </th>
                 <th>
-                    Ticket Name
+                    Name
                 </th>
                 <th>
                     Date Created
                 </th>
-                <th></th>
+                <th>
+                    Actions
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -72,36 +88,40 @@
                     </td>
                     <td>
                         @item.Created.Date.ToString("MM/dd/yyy")
-                    </td>   
+                    </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", "Tickets", new { id = item.Id }, null)
                         @Html.ActionLink("Details", "Details", "Tickets", new { id = item.Id }, null)
                         @Html.ActionLink("Delete", "Delete", "Tickets", new { id = item.Id }, null)
-                    </td>               
+                    </td>
                 </tr>
             }
         </tbody>
 
     </table>
-</div>
-<p>
-    
-    
-    @Html.ActionLink("Back to List", "Index")
-    @Html.ActionLink("Add Ticket", "Create", "Tickets", new { projectId = Model.Id }, null)
-    @if (User.IsInRole("Admin"))
-    {@Html.ActionLink("Assign PM", "AssignPM", "Projects", new { id = Model.Id }, null)
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) 
-    @Html.ActionLink("Delete", "Delete", new { id = Model.Id })}
-@{
-    var userId = User.Identity.GetUserId();
-    if (userId == Model.PMID) {@Html.ActionLink("Add Developers To Project", "AssignDev", new { id = Model.Id })}
-    }
-</p>
+
+    <p>
+
+
+        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Add Ticket", "Create", "Tickets", new { projectId = Model.Id }, null)
+        @if (User.IsInRole("Admin"))
+        {@Html.ActionLink("Assign PM", "AssignPM", "Projects", new { id = Model.Id }, null)
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+            @Html.ActionLink("Delete", "Delete", new { id = Model.Id })}
+        @{
+            var userId = User.Identity.GetUserId();
+            if (userId == Model.PMID)
+            {@Html.ActionLink("Add Developers To Project", "AssignDev", new { id = Model.Id })}
+        }
+    </p>
+    </body>
+</html>
 @section scripts{
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
     <script>
-$(document).ready(function () {
-    $('.table').DataTable();
-});</script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });</script>
 }

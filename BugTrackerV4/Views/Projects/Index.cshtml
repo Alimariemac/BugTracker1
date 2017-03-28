@@ -3,58 +3,65 @@
 @{
     ViewBag.Title = "Index";
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css " />
+</head>
+<body>
+    <h2>Index</h2>
 
-<h2>Index</h2>
-
-<p>
-    @if (User.IsInRole("Admin") || User.IsInRole("ProjectManager"))
-    {
-    @Html.ActionLink("Create New", "Create")
-    }
-</p>
-<table class="table">
-   
-    <thead>
-        <tr>
-            <th>Projects</th>
-            <th>Project Manager</th>
-            </tr>
-            </thead>      
-   
-    <tbody>
-
-        @foreach (var item in Model)
+    <p>
+        @if (User.IsInRole("Admin") || User.IsInRole("ProjectManager"))
         {
+            @Html.ActionLink("Create New", "Create")
+        }
+    </p>
+    <table class="table">
+
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.project.Name)
-                </td>              
+                <th>Projects</th>
+                <th>Project Manager</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.project.Name)
+                    </td>
                     @if (item.ProjectManager != null)
                     {
                         <td>
-                            @Html.DisplayFor(modelItem=> item.ProjectManager.FullName)
-                       </td>
+                            @Html.DisplayFor(modelItem => item.ProjectManager.FullName)
+                        </td>
                     }
                     else
                     {
-                        <td>Not Assigned
+                        <td>
+                            Not Assigned
                         </td>
                     }
-
-                <td>@Html.ActionLink("Edit", "Edit", new { id = item.project.Id }) </td>
-                <td> @Html.ActionLink("Details", "Details", new { id = item.project.Id }) </td>
-                <td>@Html.ActionLink("Delete", "Delete", new { id = item.project.Id })</td>
+                    
+                    <td>@Html.ActionLink("Edit", "Edit", new { id = item.project.Id }) | @Html.ActionLink("Details", "Details", new { id = item.project.Id })|@Html.ActionLink("Delete", "Delete", new { id = item.project.Id }) </td>
                 </tr>
 
-                    }
+            }
         </tbody>
 
-</table>
+    </table>
 
+</body>
+</html>
 @section scripts{
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
     <script>
-$(document).ready(function () {
-    $('#myTable').DataTable();
-});</script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });</script>
 }
