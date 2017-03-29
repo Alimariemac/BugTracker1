@@ -26,10 +26,9 @@ namespace BugTrackerV4.Controllers
             {
                 ProjectPMViewModel vm = new ProjectPMViewModel();
                 vm.project = p;
-                vm.ProjectManager = p.PMID != null ? db.Users.Find(p.PMID) : null;
-
+                vm.ProjectManager = p.PMID != null ? db.Users.Find(p.PMID) : null;                
                 model.Add(vm);
-            }
+            }          
             return View(model);
         }
 
@@ -45,6 +44,7 @@ namespace BugTrackerV4.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ProjectManager = db.Users.Find(project.PMID);
             return View(project);
         }
 

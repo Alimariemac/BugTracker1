@@ -117,8 +117,23 @@ namespace BugTrackerV4.Controllers
             if (ModelState.IsValid)
             {
                 var tkt = db.Tickets.Find(devVM.ticket.Id);
+                var oldTkt = db.Tickets.AsNoTracking().Where(m => m.Id == tkt.Id).FirstOrDefault();     
                 tkt.AssignedUserId = devVM.SelectedUser;
                 db.SaveChanges();
+
+                if (oldTkt.AssignedUserId != tkt.AssignedUserId)
+                {
+                    TicketHistory tHistory = new TicketHistory();
+                    tHistory.ChangedDate = DateTimeOffset.Now;
+                    tHistory.Property = "Assigned User";
+                    tHistory.OldValue = db.Users.Find(oldTkt.AssignedUserId).FullName;
+                    tHistory.NewValue = db.Users.Find(tkt.AssignedUserId).FullName;                    
+                    tHistory.TicketId = tkt.Id;
+                    tHistory.UserId = User.Identity.GetUserId();
+
+                    db.TicketHistories.Add(tHistory);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Details", "Projects", new { id = tkt.ProjectId });
             }
             return View(devVM.ticket.Id);
@@ -196,23 +211,23 @@ namespace BugTrackerV4.Controllers
         //    return RedirectToAction("Index", "Tickets");
         //}
 
-        [Authorize(Roles = "ProjectManager")]
-        [HttpGet]
-        public ActionResult AssignUser(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Ticket ticket = db.Tickets.Find(id);
-            if (ticket == null)
-            {
-                return HttpNotFound();
-            }
-            UserRolesHelper urh = new UserRolesHelper();
-            ViewBag.AssignedUserId = new SelectList(urh.UsersInRole("Developer"));
-            return View(ticket);
-        }
+        //[Authorize(Roles = "ProjectManager")]
+        //[HttpGet]
+        //public ActionResult AssignUser(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Ticket ticket = db.Tickets.Find(id);
+        //    if (ticket == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    UserRolesHelper urh = new UserRolesHelper();
+        //    ViewBag.AssignedUserId = new SelectList(urh.UsersInRole("Developer"));
+        //    return View(ticket);
+        //}
 
 
         // GET: Tickets/Edit/5
@@ -245,9 +260,105 @@ namespace BugTrackerV4.Controllers
         {
             if (ModelState.IsValid)
             {
+                //get a copy of the "old" ticket
+                Ticket oldTicket = db.Tickets.AsNoTracking().Where(m => m.Id == ticket.Id).FirstOrDefault();
+
                 ticket.Updated = DateTimeOffset.Now;
                 db.Entry(ticket).State = EntityState.Modified;
+                //Always save the changes user is trying to make FIRST
                 db.SaveChanges();
+                //Add history record
+                if (oldTicket.TicketPriorityId != ticket.TicketPriorityId)
+                {
+                    TicketHistory tHistory = new TicketHistory();
+                    tHistory.ChangedDate = DateTimeOffset.Now;
+                    tHistory.Property = "Ticket Priority";
+                    tHistory.OldValue = db.TicketPriorities.Find(oldTicket.TicketPriorityId).Name;
+                    tHistory.NewValue = db.TicketPriorities.Find(ticket.TicketPriorityId).Name;
+                    tHistory.TicketId = ticket.Id;
+                    tHistory.UserId = User.Identity.GetUserId();
+
+                    db.TicketHistories.Add(tHistory);
+                    db.SaveChanges();
+                }
+
+                if (oldTicket.TicketTypeId != ticket.TicketTypeId)
+                {
+                    TicketHistory tHistory = new TicketHistory();
+                    tHistory.ChangedDate = DateTimeOffset.Now;
+                    tHistory.Property = "Ticket Type";
+                    tHistory.OldValue = db.TicketTypes.Find(oldTicket.TicketTypeId).Name;
+                    tHistory.NewValue = db.TicketTypes.Find(ticket.TicketTypeId).Name;
+                    tHistory.TicketId = ticket.Id;
+                    tHistory.UserId = User.Identity.GetUserId();
+
+                    db.TicketHistories.Add(tHistory);
+                    db.SaveChanges();
+
+                }
+
+                //if (oldTicket.AssignedUserId != ticket.AssignedUserId)
+                //{
+                //    TicketHistory tHistory = new TicketHistory();
+                //    tHistory.ChangedDate = DateTimeOffset.Now;
+                //    tHistory.Property = "Assigned User";
+                //    if (oldTicket.AssignedUserId == null)
+                //    {
+                //        tHistory.OldValue = "Not Assigned";
+                //        tHistory.NewValue = db.Users.Find(ticket.AssignedUserId).FullName;
+                //    }
+                //    else
+                //    {
+                //        tHistory.OldValue = db.Users.Find(oldTicket.AssignedUserId).FullName;
+                //        tHistory.NewValue = db.Users.Find(ticket.AssignedUserId).FullName;
+                //    }
+                //    tHistory.TicketId = ticket.Id;
+                //    tHistory.UserId = User.Identity.GetUserId();
+
+                //    db.TicketHistories.Add(tHistory);
+                //    db.SaveChanges();
+                //}
+                if (oldTicket.Description != ticket.Description)
+                {
+                    TicketHistory tHistory = new TicketHistory();
+                    tHistory.ChangedDate = DateTimeOffset.Now;
+                    tHistory.Property = "Description";
+                    tHistory.OldValue = oldTicket.Description;
+                    tHistory.NewValue = ticket.Description;
+                    tHistory.TicketId = ticket.Id;
+                    tHistory.UserId = User.Identity.GetUserId();
+
+                    db.TicketHistories.Add(tHistory);
+                    db.SaveChanges();
+                }
+
+                if (oldTicket.Title != ticket.Title)
+                {
+                    TicketHistory tHistory = new TicketHistory();
+                    tHistory.ChangedDate = DateTimeOffset.Now;
+                    tHistory.Property = "Title";
+                    tHistory.OldValue = oldTicket.Title;
+                    tHistory.NewValue = ticket.Title;
+                    tHistory.TicketId = ticket.Id;
+                    tHistory.UserId = User.Identity.GetUserId();
+
+                    db.TicketHistories.Add(tHistory);
+                    db.SaveChanges();
+                }
+
+                if (oldTicket.TicketStatusId != ticket.TicketStatusId)
+                {   TicketHistory tHistory = new TicketHistory();
+                    tHistory.ChangedDate = DateTimeOffset.Now;
+                    tHistory.Property = "Ticket Status";
+                    tHistory.OldValue = db.TicketStatuses.Find(oldTicket.TicketStatusId).Name;
+                    tHistory.NewValue = db.TicketStatuses.Find(ticket.TicketStatusId).Name;
+                    tHistory.TicketId = ticket.Id;
+                    tHistory.UserId = User.Identity.GetUserId();
+
+                    db.TicketHistories.Add(tHistory);
+                    db.SaveChanges();
+                }
+
                 return RedirectToAction("Index");
             }
             ViewBag.AssignedUserId = new SelectList(db.Users, "Id", "FirstName", ticket.AssignedUserId);

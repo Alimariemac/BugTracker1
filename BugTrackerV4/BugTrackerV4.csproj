@@ -225,6 +225,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\2.png" />
     <Content Include="Images\Attachments\tshirtsmall.jpg" />
+    <Content Include="Images\pic4.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />
@@ -233,6 +234,7 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Private.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\clndr.js" />

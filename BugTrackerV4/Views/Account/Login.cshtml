@@ -30,92 +30,182 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="content/bootstrap.min.js"></script>
 </head>
 <body id="login">
-    <div class="row front-page">
-        <div class="col-sm-offset-1 col-sm-10">
-    <div class="col-sm-4"><h1 style="text-align:center;"> The Ultimate Bug Tacker</h1></div>
-    <div class="col-sm-8"><p style="text-align:right;"><span class="lead">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium </span>
-        voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt 
-        mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio 
-        cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis 
-        debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. 
-        Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."</p></div>
-        </div>
-   </div>
-       <!--end top row-->
     <div class="row second-half">
-        <div class="col-sm-offset-1">
-        <div class="col-sm-2">
-    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
-    {
-        @Html.AntiForgeryToken()
-    <div class="app-cam">       
-            <form>
-            <input type="hidden" class="text" name="Email" value="Admin@demo.com">          
-             <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">    
-            <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="Admin"></div>         
-        </form>
-        
-    </div>}
-            </div>
-            <div class="col-sm-2">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
-                {
-                    @Html.AntiForgeryToken()
+    <h1 style="color:white; text-align:center">Log-In or Choose your Role</h1>
+        <div class="row" style="padding-bottom:50px;"> 
+            <div class="col-sm-offset-3 col-sm-6">
+                <h2 class="form-heading">login</h2>
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {@Html.AntiForgeryToken()
                     <div class="app-cam">
                         <form>
-                            <input type="hidden" class="text" name="Email" value="ProjectManager@demo.com">
-                            <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
-                            <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="PM"></div>
+                            <input type="text" class="text" value="E-mail address" name="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-mail address';}">
+                            <input type="password" value="Password" name="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+                            <input type="submit" value="Log in" class="btn btn-default" />
                         </form>
-
                     </div>}
             </div>
-            <div class="col-sm-2">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="app-cam">
-                        <form>
-                            <input type="hidden" class="text" name="Email" value="Developer@demo.com">
-                            <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
-                            <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="Developer"></div>
-                        </form>
-
-                    </div>}
-            </div>
-            <div class="col-sm-2">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="app-cam">
-                        <form>
-                            <input type="hidden" class="text" name="Email" value="Submitter@demo.com">
-                            <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
-                            <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="Submitter"></div>
-                        </form>
-
-                    </div>}
-            </div>
-            <div class="col-sm-2">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="app-cam">
-                        <form>
-                            <input type="hidden" class="text" name="Email" value="TestUser@demo.com">
-                            <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
-                            <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="User"></div>
-                        </form>
-
-                    </div>}
-            </div>
-       
         </div>
-        </div>
-
-    <div class="copy_layout login">
-        <p>Copyright &copy; 2015 Modern. All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
     </div>
+    <div class="row" style="padding-top:20px;">  
+        <div class="col-sm-offset-2 col-sm-8">    
+            <div class="col-sm-4 widget_1_box1">
+                        <div class="coffee">
+                            <div class="coffee-top">
+                                    <div style="height:150px; background-color:#E4069C;">
+                                    </div>
+                                    <div class="doe">
+                                        <h6>Project Manager</h6>                                     
+                                    </div>
+                                    <i></i>
+                            </div>
+                            <div class="follow">
+                                <p>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"</p>
+                               @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+                               {
+                                @Html.AntiForgeryToken()
+                                <div class="app-cam">
+                                    <form>
+                                        <input type="hidden" class="text" name="Email" value="manager@demo.com">
+                                        <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+                                        <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="Log In"></div>
+                                    </form>
+
+                                </div>}
+                            </div>
+                        </div>
+                    </div>
+            <div class="col-sm-4 widget_1_box1">
+                <div class="coffee">
+                    <div class="coffee-top">
+                        <div style="height:150px; background-color:#FFBE07;">
+                        </div>
+                            <div class="doe">
+                                <h6>Developer</h6>
+                            </div>
+                            <i></i>
+                    </div>
+                    <div class="follow">
+                        <p>
+                            "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of 
+                        the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or 
+                        avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences
+                        </p>                       
+                         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="app-cam">
+                                    <form>
+                                        <input type="hidden" class="text" name="Email" value="developer@demo.com">
+                                        <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+                                        <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="Log In"></div>
+                                    </form>
+
+                                </div>}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 widget_1_box1">
+                <div class="coffee">
+                    <div class="coffee-top">
+                        <div style="height:150px; background-color:#FD0713;">
+                        </div>
+                            <div class="doe">
+                                <h6>Admin</h6>
+                            </div>
+                            <i></i>
+                    </div>
+                    <div class="follow">
+                        <p>
+                            "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of
+                            the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or
+                            avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences
+                        </p>  
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="app-cam">
+                                <form>
+                                    <input type="hidden" class="text" name="Email" value="admin@demo.com">
+                                    <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+                                    <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="Log In"></div>
+                                </form>
+
+                            </div>}
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="row" style="padding-top:20px;">
+                <div class="col-sm-offset-2 col-sm-8">
+                    <div class="col-sm-4 widget_1_box1">                     
+                                <div class="coffee">
+                                    <div class="coffee-top">
+                                        <div style="height:150px; background-color:#471FDC;">
+                                        </div>
+                                        <div class="doe">
+                                            <h6>Submitter</h6>
+                                        </div>
+                                        <i></i>
+                                    </div>
+                                    <div class="follow">
+                                        <p>
+                                            "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of
+                                            the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or
+                                            avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences
+                                        </p>
+                                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <div class="app-cam">
+                                                <form>
+                                                    <input type="hidden" class="text" name="Email" value="submitter@demo.com">
+                                                    <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+                                                    <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="Log In"></div>
+                                                </form>
+
+                                            </div>}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 widget_1_box1">
+                                <div class="coffee">
+                                    <div class="coffee-top">
+                                        <div style="height:150px; background-color:#FF7C07;">
+                                        </div>
+                                        <div class="doe">
+                                            <h6>Test User</h6>
+                                        </div>
+                                        <i></i>
+                                    </div>
+                                    <div class="follow">
+                                        <p>
+                                            "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of
+                                            the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or
+                                            avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences
+                                        </p>
+                                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <div class="app-cam">
+                                                <form>
+                                                    <input type="hidden" class="text" name="Email" value="user@demo.com">
+                                                    <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+                                                    <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="Log In"></div>
+                                                </form>
+
+                                            </div>}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="copy_layout login">
+                    <p>Copyright &copy; 2015 Modern. All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+                </div>
 </body>
 </html>
 

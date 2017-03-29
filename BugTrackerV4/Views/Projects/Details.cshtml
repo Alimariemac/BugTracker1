@@ -10,10 +10,40 @@
     <h1 style="text-align:center">@Html.DisplayFor(model => model.Name)</h1>
     <hr />
     <div class="row" style="padding:20px;">
-        <div class="col-sm-6">
+        <div class="col-sm-3 divide">
+            <h3 style="text-align:center">
+                Project Manager
+            </h3>
+            <br>
+            <div class="row">
+                <div class="stats-info3">
+                    <div class="online">
+                        <a href="#">
+                            <div class="online-top">
+                                <div class="top-at">
+                                    <img class="img-responsive" src="~/Images/2.png" alt="">
+                                </div>
+                                <div class="top-on">
+                                    <div class="top-on1">
+                                        <p>@ViewBag.ProjectManager.FullName</p>
+                                    </div>
+                                    <label class="round"> </label>
+                                    <div class="clearfix"> </div>
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-sm-offset-1 col-sm-3">
             <h3 style="text-align:center">
                 Developers on Project
-            </h3>           
+            </h3>
             <br>
             @foreach (var user in Model.Users)
             {
@@ -41,65 +71,67 @@
                 </div>
             }
         </div>
-        <div class="col-sm-6 divide">
-                    @Html.Partial("~/Views/Shared/_CreateTicket.cshtml", new BugTrackerV4.Models.CodeFirst.Ticket {ProjectId = Model.Id })
+        <div class="col-sm-offset-1 col-sm-3 divide">
+            @Html.Partial("~/Views/Shared/_CreateTicket.cshtml", new BugTrackerV4.Models.CodeFirst.Ticket { ProjectId = Model.Id })
         </div>
     </div>
-    <h3 style="text-align:center">Tickets on Project</h3>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Assigned User
-                </th>
-                <th>
-                    Priority
-                </th>
-                <th>
-                    Status
-                </th>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Date Created
-                </th>
-                <th>
-                    Actions
-                </th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="row">
+        <div class="col-sm-8">
+            <h3 style="text-align:center">Tickets on Project</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Ticket Name
+                        </th>
+                        <th>
+                            Priority
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                        <th>
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
 
-            @foreach (var item in Model.Tickets)
+                    @foreach (var item in Model.Tickets)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AssignedUser.FullName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TicketPriority.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TicketStatus.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @item.Created.Date.ToString("MM/dd/yyy")
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", "Tickets", new { id = item.Id }, null)
-                        @Html.ActionLink("Details", "Details", "Tickets", new { id = item.Id }, null)
-                        @Html.ActionLink("Delete", "Delete", "Tickets", new { id = item.Id }, null)
-                    </td>
-                </tr>
-            }
-        </tbody>
+                        <tr>
+                            <td>
+                                <div class="dropdown">
+                                    <button id="dLabel" type="button" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <li><p>Assigned User: @Html.DisplayFor(modelItem => item.AssignedUser.FullName)</p></li>
+                                        <li><p> Type: @Html.DisplayFor(modelItem => item.TicketType.Name)</p></li>
+                                        <li><p> Created: @item.Created.Date.ToString("MM/dd/yyy")</p></li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TicketPriority.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TicketStatus.Name)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", "Tickets", new { id = item.Id }, null)
+                                @Html.ActionLink("Details", "Details", "Tickets", new { id = item.Id }, null)
+                                @Html.ActionLink("Delete", "Delete", "Tickets", new { id = item.Id }, null)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
 
-    </table>
-
+            </table>
+        </div>
+    </div>
     <p>
 
 

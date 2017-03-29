@@ -182,6 +182,9 @@ namespace BugTrackerV4.Migrations
             if (!context.TicketTypes.Any(u => u.Name == "Software Update"))
             { context.TicketTypes.Add(new TicketType { Name = "Software Update" }); }
 
+            if (!context.TicketTypes.Any(u => u.Name == "Default"))
+            { context.TicketTypes.Add(new TicketType { Name = "Default" }); }
+
             if (!context.TicketStatuses.Any(u => u.Name == "New"))
             { context.TicketStatuses.Add(new TicketStatus { Name = "New" }); }
 

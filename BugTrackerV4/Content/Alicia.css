@@ -22,12 +22,15 @@ padding-top:20px !important;
 padding:20px;
 }
 
+.form-control {
+       background:white !important;
+}
 .form .form-control {
    border: 1px solid black !important;
    background:white !important;
 }
 textarea#Description {
-    background:none !important;
+    background:white !important;
     border-radius:20px !important;
     border:1px solid #fff !important;
     width:100%;

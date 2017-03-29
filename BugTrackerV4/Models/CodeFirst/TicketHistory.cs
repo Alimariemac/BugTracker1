@@ -14,6 +14,7 @@ namespace BugTrackerV4.Models.CodeFirst
         public string OldValue { get; set; }
         public string NewValue { get; set; }
         public DateTimeOffset ChangedDate { get; set; }
+        public string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
         public virtual Ticket Ticket { get; set; }

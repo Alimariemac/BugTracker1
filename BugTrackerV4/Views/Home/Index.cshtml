@@ -47,79 +47,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
     <!--end top row-->
     <div class="row second-half">
-        <div class="col-sm-offset-1">
-            <div class="col-sm-2">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="app-cam">
-                        <form>
-                            <input type="hidden" class="text" name="Email" value="Admin@demo.com">
-                            <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
-                            <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="Admin"></div>
-                        </form>
-
-                    </div>}
-            </div>
-            <div class="col-sm-2">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="app-cam">
-                        <form>
-                            <input type="hidden" class="text" name="Email" value="ProjectManager@demo.com">
-                            <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
-                            <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="PM"></div>
-                        </form>
-
-                    </div>}
-            </div>
-            <div class="col-sm-2">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="app-cam">
-                        <form>
-                            <input type="hidden" class="text" name="Email" value="Developer@demo.com">
-                            <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
-                            <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="Developer"></div>
-                        </form>
-
-                    </div>}
-            </div>
-            <div class="col-sm-2">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="app-cam">
-                        <form>
-                            <input type="hidden" class="text" name="Email" value="Submitter@demo.com">
-                            <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
-                            <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="Submitter"></div>
-                        </form>
-
-                    </div>}
-            </div>
-            <div class="col-sm-2">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="app-cam">
-                        <form>
-                            <input type="hidden" class="text" name="Email" value="TestUser@demo.com">
-                            <input type="hidden" name="Password" value="Abc&123!" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
-                            <div class="submit"><input type="submit" onclick="$(this).closest('form').submit();" value="User"></div>
-                        </form>
-
-                    </div>}
-            </div>
-
+       <div class="row">
+           <a href=@Url.Action("Login", "Account", routeValues: null) style="text-align:center"><h1>GET STARTED</h1></a>        
         </div>
-    </div>
-
-    <div class="copy_layout login">
-        <p>Copyright &copy; 2015 Modern. All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
-    </div>
+   </div>
 </body>
 </html>
 
