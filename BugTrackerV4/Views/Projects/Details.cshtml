@@ -10,7 +10,7 @@
     <h1 style="text-align:center">@Html.DisplayFor(model => model.Name)</h1>
     <hr />
     <div class="row" style="padding:20px;">
-        <div class="col-sm-4" style="padding-top:35px;">
+        <div class="col-sm-6">
             <h3 style="text-align:center">
                 Developers on Project
             </h3>           
@@ -41,8 +41,8 @@
                 </div>
             }
         </div>
-        <div class="col-sm-8 divide">
-                    @*@Html.Partial("~/Views/Shared/_CreateTicket.cshtml")*@
+        <div class="col-sm-6 divide">
+                    @Html.Partial("~/Views/Shared/_CreateTicket.cshtml", new BugTrackerV4.Models.CodeFirst.Ticket {ProjectId = Model.Id })
         </div>
     </div>
     <h3 style="text-align:center">Tickets on Project</h3>

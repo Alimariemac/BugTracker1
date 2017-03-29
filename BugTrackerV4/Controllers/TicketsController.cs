@@ -43,9 +43,9 @@ namespace BugTrackerV4.Controllers
                     .Include(t => t.Project)
                     .Include(t => t.TicketPriority)
                     .Include(t => t.TicketStatus)
-                    .Include(t => t.TicketType);
-
-                    model.PMTickets = tickets.ToList();
+                    .Include(t => t.TicketType);                
+                model.PMTickets = tickets.ToList();
+                ViewBag.PMAmount = model.PMTickets.Count();
             }
 
             if (User.IsInRole("Developer"))
@@ -58,7 +58,8 @@ namespace BugTrackerV4.Controllers
                     .Include(t => t.TicketStatus)
                     .Include(t => t.TicketType);
 
-                model.DevTickets = tickets.ToList();
+                    model.DevTickets = tickets.ToList();
+                ViewBag.DevAmount = model.DevTickets.Count();
             }
             
             if (User.IsInRole("Submitter"))
@@ -72,7 +73,10 @@ namespace BugTrackerV4.Controllers
                     .Include(t => t.TicketType);
 
                 model.SubTickets = tickets.ToList();
-            }
+                ViewBag.SubAmount = model.SubTickets.Count();
+            }           
+            
+           
             return View(model);
        
         }
@@ -148,7 +152,8 @@ namespace BugTrackerV4.Controllers
                 ticket.CreatorUser = db.Users.Find(User.Identity.GetUserId());
                 ticket.TicketPriority = db.TicketPriorities.Single(p => p.Name == "Low");
                 ticket.TicketStatus = db.TicketStatuses.Single(t=>t.Name=="New");
-                ticket.Created = DateTimeOffset.Now;            
+                ticket.Created = DateTimeOffset.Now;
+                ticket.TicketType = db.TicketTypes.Single(t => t.Name == "Default");          
                 db.Tickets.Add(ticket);
                 db.SaveChanges();
                 return RedirectToAction("Details", "Projects", new {id=ticket.ProjectId } );

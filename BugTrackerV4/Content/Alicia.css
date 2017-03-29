@@ -18,3 +18,21 @@
 .dataTables_wrapper no-footer{
 padding-top:20px !important;
 }
+.form-horizontal {
+padding:20px;
+}
+
+.form .form-control {
+   border: 1px solid black !important;
+   background:white !important;
+}
+textarea#Description {
+    background:none !important;
+    border-radius:20px !important;
+    border:1px solid #fff !important;
+    width:100%;
+    padding:10px;
+}
+.form-horizontal .control-label {
+text-align:left !important;
+}
